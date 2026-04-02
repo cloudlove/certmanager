@@ -1,0 +1,33 @@
+# 敏感配置使用 ENC(...) 格式存储加密密文
+# 解密需设置环境变量: CERTMANAGER_ENCRYPT_SALT=<your-salt>
+# 加密工具: go run cmd/encrypt/main.go -salt=<salt> -value=<plaintext>
+# 开发环境可直接使用明文值（不设置 CERTMANAGER_ENCRYPT_SALT 即可）
+
+server:
+  port: 8080
+
+database:
+  host: 115.191.22.182
+  port: 3306
+  user: root
+  password: ENC(ui9wMcanNCZNQPho1ZI+yWGGPvGP7N9rpBfkEYUTHEVYJTqGymBZHyS+cYEhLsrIrEWxBW4yZlE=)
+  dbname: certmanager
+
+redis:
+  addr: 115.191.22.182:6379
+  password: ""
+  db: 0
+
+security:
+  aes_key: ENC(wew9VGxmN3/0uY5vnmQOdsbLn1f57NXHKeMW6ojX6RSwQJb5jaHt5q5f9NY8AhmjMF8+WWglzrrsJb2gRc4tRN8htB2TM/egS42x8g==)
+
+jwt:
+  secret: ENC(yeUwUyFlD3Im3NGv7pLd6OduhaL5u6wE3Py4ylc62yti9iQ1DCHu34fsQqEEDj80q/rSEzGxdBPq4lvntOVDlhnN2yUETVs/9BKN)
+  expire_hours: 24
+  refresh_hours: 168
+
+cors:
+  allowed_origins:
+    - "http://localhost:5173"
+    - "http://localhost:3000"
+  allow_credentials: true
